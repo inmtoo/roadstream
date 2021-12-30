@@ -4,7 +4,9 @@ const elements = {
     connectButton: document.querySelector(".connect__button"),
     connectForm: document.querySelector(".connect__form"),
     errorFormButton: document.querySelector(".error-form__button"),
-    errorForm: document.querySelector(".error-form")
+    errorForm: document.querySelector(".error-form"),
+    sendOk: document.querySelector(".send-ok"),
+    sendOkButton: document.querySelector(".send-ok__button")
 };
 
 elements.connectButton.addEventListener("click", function (event) {
@@ -45,5 +47,13 @@ elements.errorFormButton.addEventListener("click", function (event) {
         method: "POST",
         body: formData
     })
-        .then(() => elements.errorBlock.classList.remove("error__visibly"));
+        .then(() => {
+            elements.errorBlock.classList.remove("error__visibly");
+            elements.sendOk.classList.add("send-ok__visibly");
+        });
+});
+
+elements.sendOkButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    elements.sendOk.classList.remove("send-ok__visibly");
 });
