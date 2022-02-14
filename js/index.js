@@ -44,9 +44,9 @@ elements.errorFormButton.addEventListener("click", function (event) {
 
     const formData = new FormData(elements.errorForm);
     fetch("/send.php", {
-        method: "POST",
-        body: formData
-    })
+            method: "POST",
+            body: formData
+        })
         .then(() => {
             elements.errorBlock.classList.remove("error__visibly");
             elements.sendOk.classList.add("send-ok__visibly");
@@ -57,3 +57,18 @@ elements.sendOkButton.addEventListener("click", function (event) {
     event.preventDefault();
     elements.sendOk.classList.remove("send-ok__visibly");
 });
+
+const anchors = document.querySelectorAll('a[href*="#"]')
+
+for (let anchor of anchors) {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+
+        const blockID = anchor.getAttribute('href').substr(1)
+
+        document.getElementById(blockID).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })
+    })
+}
